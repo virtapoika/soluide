@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SoluIDE</title>
+
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <style>
+        body
+        {
+          background-color: #222;
+        }
+    </style>
+    <script>
+
+    $(document).on("mobileinit", function () {
+        $.mobile.ignoreContentEnabled=true;
+    });
+    $(document).bind('mobileinit',function(){
+     $.mobile.keepNative = "button,input,h1,h2,h3"; /* jQuery Mobile 1.4 and higher */
+     //$.mobile.page.prototype.options.keepNative = "select, input"; /* jQuery Mobile 1.4 and lower */
+});
+    </script>
+    <script type="text/javascript" src="src-min/ace.js"></script>
+  <link rel="stylesheet" href="style.css" >
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+    </head>
+    <body style="background: #222;">
+    <div data-role="page" style="background: #222;" id="page">
+      <div id="editorView">
+        <div id="sidebar" data-enhance="false"  data-role="panel">
+          <center>
+          <img style="width: 100px;" src="solu-logo-white.svg"><br/><h3 style="color: #fff;">SoluIDE</h3>
+          <div id="files" style="color: #fff;"></div>
+          <br/>
+          <br/>
+          <div style="">
+          <button onClick="updateFile()" style="background-color: #fff; width: 120px;"class="">Save</button>
+          <button onClick="openAddFile()" id="openaddfilebutton" style="background-color: #fff;width: 120px;"class="">Add File</button>
+          <input type="text" id="newfilename" style="display:none;" placeholder="The new files name">
+          <button onClick="addFile()" id="newfilenameok" style="background-color: #fff; display: none; width: 120px;"class="">Add File</button>
+          <button onClick="runCode()"class="" style="background-color: #fff; width: 120px;">Run!</button>
+          <button onClick="back()" style="background-color: #fff; width: 120px;"class="">Back</button>
+        </center>
+        </div>
+        </div>
+        <div data-role="main" style="background-color:#222;" data-enhance="false" class="ui-content" id="main">
+          <a href="#sidebar" style="position: fixed;z-index: 100000; top: 0; left: 0; margin: 0; padding: 0; color: #fff; font-size: 40px;" class=""><i class="fa fa-bars"></i></a>
+
+        <div id="editor"></div>
+      </div>
+      </div>
+    </div>
+
+      <script src="editor.js"></script>
+
+    </body>
+</html>

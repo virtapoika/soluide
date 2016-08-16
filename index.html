@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>SoluIDE</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <script src="jquery.min.js"></script>
+    <script src="index.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" >
+
+
+    </head>
+    <body>
+      <center>
+
+      <div id="container" style="padding: 0;">
+        <div id="notlogged" style="display: none;">
+          <div id="registerform" style="display: none;">
+            <img src="solu-logo-white.svg" height="60">
+        <h1>IDE</h1>
+        <p>Register</p>
+          <center><input width="100" type="text" placeholder="email" id="regemail"><br/>
+          <input width="100" type="password" placeholder="password" id="regpassword1"><br/>
+          <input width="100" type="password" placeholder="retype password" id="regpassword2"><br/>
+          <button style="color: #fff !important;" id="new" onclick="register()">Register</button><br/>
+          <a style="color: #fff !important;" id="new" href="javascript:unopenRegister()">Back</a>
+
+        </div>
+        <div id="loginform">
+          <img src="solu-logo-white.svg" height="60">
+          <h1>IDE</h1>
+          <p>Login</p>
+          <input width="100" type="text" placeholder="email" id="logemail"><br/>
+          <input width="100" type="password" placeholder="password" id="logpassword"><br/>
+          <button style="color: #fff !important;" id="new" onclick="login()">Login</button></br>
+          <button style="color: #fff !important;" id="new" onclick="openRegister()">Create account</button>
+        </div>
+        </div>
+        <div id="logged" style="display: none; margin-top: 0;">
+          <a class="" style="align: left; float: left; left: 0; color: #fff;" onClick="logout()">Logout</a></br>
+          <h1>Create project</h1>
+          <input type="text" placeholder="name" id="projectname">
+          <button id="new"style="color: #fff !important;" onclick="createProject()">createProject</button>
+        <h3>Your projects: </h3>
+        <div id="projects"></div>
+      </center>
+      </div>
+      </div>
+</center>
+
+    </body>
+</html>

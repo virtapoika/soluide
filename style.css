@@ -1,0 +1,73 @@
+*
+{
+  text-shadow:0 0 0 !important;
+}
+  #editor {
+    position: absolute;
+    height: 100%;
+    width: 97%;
+    bottom: 0;
+    right: 0;
+
+  }
+  #sidebar
+  {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 15%;
+    height: 100%;
+    background: #222;
+    padding: 5px;
+
+  }
+
+  button
+  {
+    color: #fff;
+  }
+  body
+  {
+      color: #fff !important;
+      background-color: #000 !important;
+      overflow: hidden;
+  }
+  #main{
+    overflow: hidden;
+
+  }
+  input
+  {
+    color: #000 !important;
+  }
+  button
+  {
+    color: #000 !important;
+  }
+  #container
+  {
+    padding: 0px;
+    margin: 0 auto;
+    height: 300px;
+    width: 300px;
+    border: 178px solid transparent;
+    font-family: 'Roboto', sans-serif;
+
+    -webkit-border-image: url(solu.png) 120 round;
+    -o-border-image: url(solu.png) 120 round;
+    border-image: url(solu.png) 120 round;
+    border-image-outset: 0px;
+
+
+  }
+  .ace_line {
+    font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+
+    span {
+        font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    }
+}
+.ui-overlay-a, .ui-page-theme-a, .ui-page-theme-a .ui-panel-wrapper
+{
+  background: #222 !important;
+}
