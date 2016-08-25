@@ -17,14 +17,8 @@ function register() {
           alert(obj[1]);
         }
         else {
-          $("#regSuc").show();
           localStorage.setItem("token", obj[1]);
-          $("#loginform").hide();
-          $("#registerform").hide();
-          $("#logged").show();
-
-
-
+          location.replace("editor.html");
         }
     }
   });
@@ -57,11 +51,8 @@ function login() {
         }
         else {
           localStorage.setItem("token", obj[1]);
-          $("#notlogged").hide();
-          $("#loginform").hide();
 
-          $("#logged").show();
-          listProjects();
+          location.replace("editor.html");
 
         }
     }
@@ -84,68 +75,9 @@ function validateToken() {
           $("#logged").hide();
          }
         else {
-          $("#notlogged").hide();
-          $("#logged").show();
-
-
-
-        }
-    }
-  });
-}
-function createProject() {
-  var token = localStorage.getItem("token");
-  var name = $("#projectname").val();
-
-  $.ajax( {
-    url: 'http://soluide.sovellus.design/api/files.php',
-    method: 'POST',
-    data: {action: 'createProject', token: token, name: name},
-    success: function(data) {
-        var obj= JSON.parse(data);
-        console.log(obj);
-        if(obj[0] == false)
-        {
-          console.log(obj[1]);
-        }
-        else {
-          alert("it works");
-          console.log(obj[1]);
-
-        }
-    }
-  });
-}
-
-function listProjects() {
-  var token = localStorage.getItem("token");
-  var name = $("#projectname").val();
-
-  $.ajax( {
-    url: 'http://soluide.sovellus.design/api/files.php',
-    method: 'POST',
-    data: {action: 'listProjects', token: token},
-    success: function(data) {
-        var obj= JSON.parse(data);
-        var objects = obj[1];
-        if(obj[0] == false)
-        {
-          $("#notlogged").show();
-          $("#logged").hide();
-        }
-        else {
-          console.log(obj);
-          var x = 0;
-          $("#projects").empty();
-          while(x < objects.length)
-          {
-            var name = objects[x].name;
-            $("#projects").append('<a style="color: #fff !important;cursor: pointer;"  onClick="javascript:openProject(\'' + name + '\')">'+name+'<a/><br/>');
-
-
-
-            x++;
-          }
+          location.replace("editor.html");
+          location.replace("editor.html");
+          location.replace("editor.html");
 
         }
     }
@@ -153,27 +85,17 @@ function listProjects() {
 }
 
 
-function openProject(name)
-{
-  location.replace("editor.html?project=" +name);
-
-
-}
-function openRegister()
-{
+function openRegister() {
   $("#loginform").hide();
   $("#registerform").show();
 
 }
-function unopenRegister()
-{
+function unopenRegister() {
   $("#loginform").show();
   $("#registerform").hide();
 }
 
 
 $(document).ready(function() {
-  //postItem();
   validateToken();
-  listProjects();
 });

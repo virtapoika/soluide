@@ -4,10 +4,85 @@ var pathi;
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.getSession().setMode("ace/mode/javascript");
+    editor.session.setOption("useWorker", false);
     editor.setOptions({
-    enableBasicAutocompletion: false
-});
+    enableBasicAutocompletion: false,
 
+});
+editor.resize();
+
+function showFiles()
+{
+  $("#projectsDiv").width( 0 )
+  $("#filesWrap").width( $("#left").width() )
+
+}
+
+function showProjects() {
+  $("#filesWrap").width( 0 )
+  $("#projectsDiv").width( $("#left").width() )
+}
+function createProject() {
+  var token = localStorage.getItem("token");
+  var name = $("#projectname").val();
+
+  $.ajax( {
+    url: 'http://soluide.sovellus.design/api/files.php',
+    method: 'POST',
+    data: {action: 'createProject', token: token, name: name},
+    success: function(data) {
+        var obj= JSON.parse(data);
+        console.log(obj);
+        if(obj[0] == false)
+        {
+          console.log(obj[1]);
+        }
+        else {
+          console.log(obj[1]);
+          listProjects();
+          openProject(name);
+
+        }
+    }
+  });
+}
+function listProjects() {
+  var token = localStorage.getItem("token");
+  var name = $("#projectname").val();
+
+  $.ajax( {
+    url: 'http://soluide.sovellus.design/api/files.php',
+    method: 'POST',
+    data: {action: 'listProjects', token: token},
+    success: function(data) {
+        var obj= JSON.parse(data);
+        var objects = obj[1];
+        if(obj[0] == false)
+        {
+
+          location.replace("index.html");
+          location.replace("index.html");
+          location.replace("index.html");
+
+        }
+        else {
+          console.log(obj);
+          var x = 0;
+          $("#projects").empty();
+          while(x < objects.length)
+          {
+            var name = objects[x].name;
+            $("#projects").append('<a style="color: #fff !important;cursor: pointer;"  onClick="openProject(\'' + name + '\')">'+name+'</a><br/>');
+
+
+
+            x++;
+          }
+
+        }
+    }
+  });
+}
 function listFiles()
 {
   var token = localStorage.getItem("token");
@@ -21,8 +96,7 @@ function listFiles()
         if(obj[0] == false)
         {
           console.log(obj);
-          location.replace("index.html");
-          location.replace("index.html");
+
 
         }
         else {
@@ -59,12 +133,9 @@ function getFile(path)
         var objects = obj[1];
         if(obj[0] == false)
         {
-          location.replace("index.html");
-          location.replace("index.html");
 
 
-          $("#notlogged").show();
-          $("#logged").hide();
+
         }
         else {
           console.log(obj[1])
@@ -93,15 +164,11 @@ function updateFile()
         var objects = obj[1];
         if(obj[0] == false)
         {
-          location.replace("index.html");
-          location.replace("index.html");
 
-          $("#notlogged").show();
-          $("#logged").hide();
+
         }
         else {
           listFiles();
-          editor.getSession().setValue("");
           $("#openaddfilebutton").show();
           $("#newfilename").hide();
           $("#newfilenameok").hide();
@@ -159,8 +226,6 @@ function deleteFile(path)
         var objects = obj[1];
         if(obj[0] == false)
         {
-          $("#notlogged").show();
-          $("#logged").hide();
         }
         else {
           listFiles();
@@ -183,9 +248,7 @@ function newFileInit()
 }
 function back()
 {
-  location.replace("index.html");
-  location.replace("index.html");
-  location.replace("index.html");
+
 }
 function getUrlVars() {
     var vars = {};
@@ -198,8 +261,14 @@ function getUrlVars() {
 function runCode()
 {
   var data = editor.getSession().getDocument().getValue();
-  var popup = window.open();
-  popup.document.write(data);
+
+  //löydä script src ja link rel
+  //var popup = window.open("http://soluide.sovellus.design/api/application/projects/"+project+"/index.html");
+  //popup.document.write(data);
+  window.open(
+  "http://soluide.sovellus.design/api/application/projects/"+project+"/index.html",
+  '_blank' // <- This is what makes it open in a new window.
+);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -214,4 +283,16 @@ $(window).keypress(function(event) {
     console.log("Saving the file...");
     event.preventDefault();
     return false;
+});
+function openProject(name) {
+  editor.getSession().setValue("");
+  project = name;
+  showFiles();
+  listFiles();
+  $("#projectname").append(name);
+
+}
+
+$(document).ready(function() {
+  listProjects();
 });

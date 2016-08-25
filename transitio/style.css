@@ -1,0 +1,32 @@
+.left {
+  width: 10%;
+  float: left;
+}
+
+.right {
+  width: 90%;
+  float: left;
+  background-color: lightblue;
+
+}
+
+
+.projects {
+  background-color: lightgrey;
+  float: left;
+  transition: 0.5s;
+  overflow: hidden;
+  width: 100%;
+}
+
+.files {
+  background-color: lightpink;
+  overflow: hidden;
+  float: left;
+  transition: 0.5s;
+  width: 0;
+}
+
+.button {
+  background-color: lightseagreen;
+}
